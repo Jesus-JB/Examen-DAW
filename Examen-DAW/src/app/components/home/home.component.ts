@@ -8,75 +8,76 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [CommonModule, RouterModule, NgbCarouselModule],
   template: `
-    <div class="container mt-5">
-      <ngb-carousel class="mb-5">
-        <ng-template ngbSlide>
-          <div class="carousel-image" style="background-image: url('assets/weather1.jpg')">
-            <div class="carousel-caption">
-              <h3>Accurate Weather Forecasts</h3>
-              <p>Get detailed weather information for any city worldwide</p>
-            </div>
+  <div class="container mt-5">
+    <ngb-carousel class="mb-5">
+      <ng-template ngbSlide>
+        <div class="carousel-image" style="background-image: url('assets/weather1.jpg')">
+          <div class="carousel-caption">
+            <h3>Pronósticos del clima precisos</h3>
+            <p>Obtén información meteorológica detallada de cualquier ciudad del mundo</p>
           </div>
-        </ng-template>
-        <ng-template ngbSlide>
-          <div class="carousel-image" style="background-image: url('assets/weather2.jpg')">
-            <div class="carousel-caption">
-              <h3>Air Quality Index</h3>
-              <p>Monitor air pollution levels in your area</p>
-            </div>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="carousel-image" style="background-image: url('assets/weather2.jpg')">
+          <div class="carousel-caption">
+            <h3>Índice de calidad del aire</h3>
+            <p>Monitorea los niveles de contaminación en tu zona</p>
           </div>
-        </ng-template>
-        <ng-template ngbSlide>
-          <div class="carousel-image" style="background-image: url('assets/weather3.jpg')">
-            <div class="carousel-caption">
-              <h3>Weather Alerts</h3>
-              <p>Stay informed about severe weather conditions</p>
-            </div>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="carousel-image" style="background-image: url('assets/weather3.jpg')">
+          <div class="carousel-caption">
+            <h3>Alertas meteorológicas</h3>
+            <p>Mantente informado sobre condiciones climáticas severas</p>
           </div>
-        </ng-template>
-      </ngb-carousel>
+        </div>
+      </ng-template>
+    </ngb-carousel>
 
-      <div class="jumbotron text-center">
-        <h1 class="display-4">Weather App</h1>
-        <p class="lead">Check the weather conditions worldwide</p>
-        <hr class="my-4">
-        <p>Get started by searching for a city or checking your favorites</p>
-        <div class="d-flex justify-content-center gap-3">
-          <a routerLink="/search" class="btn btn-primary btn-lg">Search Weather</a>
-          <a routerLink="/favorites" class="btn btn-secondary btn-lg">View Favorites</a>
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Aplicación del Clima</h1>
+      <p class="lead">Consulta las condiciones climáticas en todo el mundo</p>
+      <hr class="my-4">
+      <p>Empieza buscando una ciudad o revisando tus favoritas</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a routerLink="/search" class="btn btn-primary btn-lg">Buscar clima</a>
+        <a routerLink="/favorites" class="btn btn-secondary btn-lg">Ver favoritas</a>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="bi bi-search fs-1"></i>
+            <h5 class="card-title mt-3">Buscar ciudades</h5>
+            <p class="card-text">Busca cualquier ciudad del mundo para obtener información climática detallada.</p>
+          </div>
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <i class="bi bi-search fs-1"></i>
-              <h5 class="card-title mt-3">Search Cities</h5>
-              <p class="card-text">Search for any city worldwide to get detailed weather information.</p>
-            </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="bi bi-clock-history fs-1"></i>
+            <h5 class="card-title mt-3">Pronóstico de 5 días</h5>
+            <p class="card-text">Consulta un pronóstico detallado de 5 días con tendencias de temperatura.</p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <i class="bi bi-clock-history fs-1"></i>
-              <h5 class="card-title mt-3">5-Day Forecast</h5>
-              <p class="card-text">Get a detailed 5-day weather forecast with temperature trends.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <i class="bi bi-star fs-1"></i>
-              <h5 class="card-title mt-3">Favorites</h5>
-              <p class="card-text">Save your favorite cities for quick weather updates.</p>
-            </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="bi bi-star fs-1"></i>
+            <h5 class="card-title mt-3">Favoritas</h5>
+            <p class="card-text">Guarda tus ciudades favoritas para acceder rápidamente a su clima.</p>
           </div>
         </div>
       </div>
     </div>
-  `,
+  </div>
+`
+,
   styles: [`
     .card {
       transition: transform 0.3s ease;

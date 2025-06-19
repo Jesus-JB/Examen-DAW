@@ -6,54 +6,54 @@ import { Social } from '../social/social';
   standalone: true,
   imports: [CommonModule,Social],
   template: `
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title text-center mb-4">About Weather App</h2>
-              
-              <div class="text-center mb-4">
-                <i class="bi bi-cloud-sun display-1 text-primary"></i>
-              </div>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Acerca de la Aplicación del Clima</h2>
 
-              <p class="lead text-center mb-4">
-                Your comprehensive weather companion for accurate forecasts worldwide
-              </p>
+            <div class="text-center mb-4">
+              <i class="bi bi-cloud-sun display-1 text-primary"></i>
+            </div>
 
-              <div class="features mb-4">
-                <h4 class="mb-3">Key Features:</h4>
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <div class="feature-item">
-                      <i class="bi bi-search text-primary"></i>
-                      <h5>City Search</h5>
-                      <p>Search weather information for any city worldwide</p>
-                    </div>
+            <p class="lead text-center mb-4">
+              Tu compañero meteorológico completo para pronósticos precisos en todo el mundo.
+            </p>
+
+            <div class="features mb-4">
+              <h4 class="mb-3">Características principales:</h4>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="feature-item">
+                    <i class="bi bi-search text-primary"></i>
+                    <h5>Búsqueda de ciudades</h5>
+                    <p>Consulta el clima de cualquier ciudad del mundo</p>
                   </div>
-                  <div class="col-md-6">
-                    <div class="feature-item">
-                      <i class="bi bi-graph-up text-primary"></i>
-                      <h5>Detailed Forecast</h5>
-                      <p>Get 5-day weather forecasts with detailed information</p>
-                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="feature-item">
+                    <i class="bi bi-graph-up text-primary"></i>
+                    <h5>Pronóstico detallado</h5>
+                    <p>Obtén pronósticos del clima por 5 días con información detallada</p>
                   </div>
-                  <div class="col-md-6">
-                    <div class="feature-item">
-                      <i class="bi bi-star text-primary"></i>
-                      <h5>Favorites</h5>
-                      <p>Save your favorite cities for quick access</p>
-                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="feature-item">
+                    <i class="bi bi-star text-primary"></i>
+                    <h5>Favoritas</h5>
+                    <p>Guarda tus ciudades favoritas para acceder rápidamente</p>
                   </div>
-                  <div class="col-md-6">
-                    <div class="feature-item">
-                      <i class="bi bi-lightning text-primary"></i>
-                      <h5>Real-time Updates</h5>
-                      <p>Get current weather conditions instantly</p>
-                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="feature-item">
+                    <i class="bi bi-lightning text-primary"></i>
+                    <h5>Actualizaciones en tiempo real</h5>
+                    <p>Consulta las condiciones actuales al instante</p>
                   </div>
                 </div>
               </div>
+            </div>
 
               <div class="tech-stack mb-4">
                 <h4 class="mb-3">Technology Stack:</h4>
@@ -74,16 +74,17 @@ import { Social } from '../social/social';
               </div>
 <app-social></app-social>
 
-              <div class="text-center">
-                <p class="mb-0">Version 1.0.0</p>
-                <p class="text-muted">Created by Jesus</p>
-              </div>
+            <div class="text-center">
+              <p class="mb-0">Versión 1.0.0</p>
+              <p class="text-muted">Creado por Jesus</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  `,
+  </div>
+`
+,
   styles: [`
     .feature-item {
       padding: 1.5rem;

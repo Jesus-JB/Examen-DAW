@@ -1,6 +1,7 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import html2canvas from 'html2canvas';
 import { WeatherService } from '../../services/weather.service';
 import { WeatherResponse, ForecastResponse } from '../../interfaces/weather.interface';
 import { Tips } from '../tips/tips';
@@ -14,7 +15,7 @@ import { Tips } from '../tips/tips';
     <div class="row">
       <!-- Tarjeta del clima actual -->
       <div class="col-md-6 mb-4">
-        <div class="card h-100">
+        <div class="card h-100" #weatherCard>
           <div class="card-body" *ngIf="currentWeather">
             <div class="d-flex justify-content-between align-items-center mb-4">
               <h2 class="card-title mb-0">{{ currentWeather.name }}</h2>
@@ -51,8 +52,10 @@ import { Tips } from '../tips/tips';
                 </div>
               </div>
               <app-tips [weather]="currentWeather"></app-tips>
+              
             </div>
           </div>
+          
 
           <div class="card-body text-center" *ngIf="loading">
             <div class="spinner-border text-primary" role="status">
@@ -91,6 +94,9 @@ import { Tips } from '../tips/tips';
         </div>
       </div>
     </div>
+  </div>
+  <div class="text-center mt-4">
+    <button class="btn btn-primary" (click)="downloadWeatherCard()">Descargar Tarjeta del Clima</button>
   </div>
 `,
   styles: [`
@@ -136,6 +142,8 @@ import { Tips } from '../tips/tips';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WeatherComponent implements OnInit {
+  @ViewChild('weatherCard') weatherCard!: ElementRef;
+
   currentWeather: WeatherResponse | null = null;
   forecast: ForecastResponse | null = null;
   loading = true;
@@ -211,4 +219,18 @@ export class WeatherComponent implements OnInit {
       this.weatherService.addToFavorites(city);
     }
   }
+  downloadWeatherCard() {
+    if (!this.weatherCard) return;
+
+    html2canvas(this.weatherCard.nativeElement, { backgroundColor: '#fff' }).then(canvas => {
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = `${this.currentWeather?.name}-weather.png`;
+      link.click();
+    }).catch(err => {
+      console.error('Error downloading weather card:', err);
+    });
+  }
+
+
 }

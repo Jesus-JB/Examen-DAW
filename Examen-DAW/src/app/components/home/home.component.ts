@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { WeatherResponse } from '../../interfaces/weather.interface';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-home',
@@ -41,10 +43,19 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
       <p class="lead">Consulta las condiciones climáticas en todo el mundo</p>
       <hr class="my-4">
       <p>Empieza buscando una ciudad o revisando tus favoritas</p>
-      <div class="d-flex justify-content-center gap-3">
+      <div class="d-flex justify-content-center gap-3 mb-3">
         <a routerLink="/search" class="btn btn-primary btn-lg">Buscar clima</a>
         <a routerLink="/favorites" class="btn btn-secondary btn-lg">Ver favoritas</a>
+        <button class="btn btn-success btn-lg" (click)="getMyLocationWeather()">
+          <i class="bi bi-geo-alt"></i> Mi ubicación
+        </button>
       </div>
+      <div *ngIf="weatherResponse" class="mt-4">
+        <h4>Clima en tu ubicación: {{ weatherResponse.name }}</h4>
+        <p>{{ weatherResponse.weather[0].description | titlecase }}</p>
+        <p>Temperatura: {{ weatherResponse.main.temp }}°C</p>
+      </div>
+      <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
     </div>
     <div class="row mt-5">
       <div class="col-md-4">
@@ -76,8 +87,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
       </div>
     </div>
   </div>
-`
-,
+  `,
   styles: [`
     .card {
       transition: transform 0.3s ease;
@@ -102,4 +112,38 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     }
   `]
 })
-export class HomeComponent {}
+export class HomeComponent {
+  weatherResponse: WeatherResponse | null = null;
+  error = '';
+
+  constructor(private weatherService: WeatherService) {}
+
+  getMyLocationWeather() {
+    this.error = '';
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          this.weatherService.getCurrentWeatherByCoords(lat, lon).subscribe({
+            next: data => {
+              this.weatherResponse = data;
+              this.error = '';
+            },
+            error: err => {
+              this.error = 'No se pudo obtener el clima de tu ubicación.';
+              this.weatherResponse = null;
+            }
+          });
+        },
+        err => {
+          this.error = 'No se pudo acceder a tu ubicación.';
+          this.weatherResponse = null;
+        }
+      );
+    } else {
+      this.error = 'La geolocalización no está soportada en este navegador.';
+      this.weatherResponse = null;
+    }
+  }
+}

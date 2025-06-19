@@ -49,13 +49,13 @@ export class WeatherService {
 
   getCurrentWeather(city: string): Observable<WeatherResponse> {
     return this.http.get<WeatherResponse>(
-      `${this.baseUrl}/weather?q=${city}&appid=${this.apiKey}&units=metric`
+      `${this.baseUrl}/weather?q=${city}&appid=${this.apiKey}&units=metric&lang=es`
     );
   }
 
   getForecast(city: string): Observable<ForecastResponse> {
     return this.http.get<ForecastResponse>(
-      `${this.baseUrl}/forecast?q=${city}&appid=${this.apiKey}&units=metric`
+      `${this.baseUrl}/forecast?q=${city}&appid=${this.apiKey}&units=metric&lang=es`
     );
   }
 
@@ -74,4 +74,9 @@ export class WeatherService {
   getWeatherIcon(iconCode: string): string {
     return `http://openweathermap.org/img/w/${iconCode}.png`;
   }
+  getCurrentWeatherByCoords(lat: number, lon: number): Observable<WeatherResponse> {
+  return this.http.get<WeatherResponse>(
+    `${this.baseUrl}/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric&lang=es`
+  );
+}
 }

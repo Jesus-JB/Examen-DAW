@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
-import { WeatherResponse, ForecastResponse, ForecastItem } from '../../interfaces/weather.interface';
+import { WeatherResponse, ForecastResponse } from '../../interfaces/weather.interface';
 import { Tips } from '../tips/tips';
+
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [CommonModule,Tips],
+  imports: [CommonModule, Tips],
   template: `
   <div class="container mt-5">
     <div class="row">
@@ -21,9 +22,19 @@ import { Tips } from '../tips/tips';
                 <i class="bi" [ngClass]="isFavorite ? 'bi-star-fill' : 'bi-star'"></i>
               </button>
             </div>
-            
+
             <div class="text-center mb-4">
-              <img [src]="getWeatherIcon(currentWeather.weather[0].icon)" [alt]="currentWeather.weather[0].description" class="weather-icon mb-3">
+                <div class="d-flex justify-content-center">
+
+              <lottie-player
+                [attr.src]="lottieSrc"
+                background="transparent"
+                speed="1"
+                style="width: 150px; height: 150px;"
+                loop
+                autoplay>
+              </lottie-player>
+                </div>
               <h3 class="temperature">{{ currentWeather.main.temp | number:'1.0-0' }}°C</h3>
               <p class="weather-description">{{ currentWeather.weather[0].description | titlecase }}</p>
             </div>
@@ -40,7 +51,6 @@ import { Tips } from '../tips/tips';
                 </div>
               </div>
               <app-tips [weather]="currentWeather"></app-tips>
-
             </div>
           </div>
 
@@ -82,8 +92,7 @@ import { Tips } from '../tips/tips';
       </div>
     </div>
   </div>
-`
-,
+`,
   styles: [`
     .weather-icon {
       width: 100px;
@@ -123,7 +132,8 @@ import { Tips } from '../tips/tips';
     .card {
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-  `]
+  `],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WeatherComponent implements OnInit {
   currentWeather: WeatherResponse | null = null;
@@ -131,6 +141,7 @@ export class WeatherComponent implements OnInit {
   loading = true;
   error = '';
   isFavorite = false;
+  lottieSrc = 'assets/animaciones/default.json';
 
   constructor(
     private route: ActivatedRoute,
@@ -142,6 +153,10 @@ export class WeatherComponent implements OnInit {
       const city = params['city'];
       if (city) {
         this.loadWeatherData(city);
+        this.isFavorite = this.weatherService.isCityFavorite(city);
+        this.weatherService.getFavoriteCities().subscribe(favs => {
+          this.isFavorite = favs.includes(city);
+        });
       }
     });
   }
@@ -150,24 +165,23 @@ export class WeatherComponent implements OnInit {
     this.loading = true;
     this.error = '';
 
-    // Load current weather
     this.weatherService.getCurrentWeather(city).subscribe({
       next: (data) => {
         this.currentWeather = data;
+        this.lottieSrc = this.getLottieSrc(data.weather[0].main);
         this.loading = false;
       },
-      error: (error) => {
+      error: () => {
         this.error = 'Error loading weather data';
         this.loading = false;
       }
     });
 
-    // Load forecast
     this.weatherService.getForecast(city).subscribe({
       next: (data) => {
         this.forecast = data;
       },
-      error: (error) => {
+      error: () => {
         this.error = 'Error loading forecast data';
       }
     });
@@ -177,8 +191,24 @@ export class WeatherComponent implements OnInit {
     return this.weatherService.getWeatherIcon(iconCode);
   }
 
+  getLottieSrc(main: string): string {
+    switch (main.toLowerCase()) {
+      case 'clear': return '/assets/soleado.json';
+      case 'rain': return '/assets/lluvia.json';
+      case 'clouds': return '/assets/nublado.json';
+      case 'thunderstorm': return '/assets/tormenta.json';
+      case 'snow': return '/assets/nieve.json';
+      default: return '/assets/default.json';
+    }
+  }
+
   toggleFavorite() {
-    this.isFavorite = !this.isFavorite;
-    // Implement favorite functionality
+    if (!this.currentWeather) return;
+    const city = this.currentWeather.name;
+    if (this.isFavorite) {
+      this.weatherService.removeFromFavorites(city);
+    } else {
+      this.weatherService.addToFavorites(city);
+    }
   }
 }

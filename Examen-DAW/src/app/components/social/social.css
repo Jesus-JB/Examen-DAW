@@ -1,0 +1,9 @@
+ .social-container i {
+      transition: transform 0.3s;
+    }
+    .social-container i:hover {
+      transform: scale(1.2);
+    }
+    .social-container a p {
+      margin: 0.5rem 0 0;
+    }

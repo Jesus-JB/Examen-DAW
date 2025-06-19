@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { Social } from '../social/social';
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,Social],
   template: `
     <div class="container mt-5">
       <div class="row justify-content-center">
@@ -72,6 +72,7 @@ import { CommonModule } from '@angular/common';
                   </li>
                 </ul>
               </div>
+<app-social></app-social>
 
               <div class="text-center">
                 <p class="mb-0">Version 1.0.0</p>

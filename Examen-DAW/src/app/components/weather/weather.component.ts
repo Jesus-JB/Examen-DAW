@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { WeatherResponse, ForecastResponse, ForecastItem } from '../../interfaces/weather.interface';
-
+import { Tips } from '../tips/tips';
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,Tips],
   template: `
     <div class="container mt-5">
       <div class="row">
@@ -40,6 +40,8 @@ import { WeatherResponse, ForecastResponse, ForecastItem } from '../../interface
                   </div>
                 </div>
               </div>
+              <app-tips [weather]="currentWeather"></app-tips>
+
             </div>
 
             <div class="card-body text-center" *ngIf="loading">

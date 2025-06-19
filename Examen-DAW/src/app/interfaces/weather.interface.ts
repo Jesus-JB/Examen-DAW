@@ -8,6 +8,7 @@ export interface WeatherResponse {
   };
   weather: [
     {
+      main: string;
       description: string;
       icon: string;
     }

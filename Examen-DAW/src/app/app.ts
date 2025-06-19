@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        <a class="navbar-brand" routerLink="/">
+        <a class="navbar-brand" routerLink="/" routerLinkActive="active" (click)="playClickSound()">
           <i class="bi bi-cloud-sun me-2"></i>Weather App
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -18,22 +18,22 @@ import { CommonModule } from '@angular/common';
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true} " (click)="playClickSound()">
                 <i class="bi bi-house-door me-1"></i>Home
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/search" routerLinkActive="active">
+              <a class="nav-link" routerLink="/search" routerLinkActive="active" (click)="playClickSound()">
                 <i class="bi bi-search me-1"></i>Search
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/favorites" routerLinkActive="active">
+              <a class="nav-link" routerLink="/favorites" routerLinkActive="active" (click)="playClickSound()">
                 <i class="bi bi-star me-1"></i>Favorites
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/about" routerLinkActive="active">
+              <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="playClickSound()">
                 <i class="bi bi-info-circle me-1"></i>About
               </a>
             </li>
@@ -80,4 +80,10 @@ import { CommonModule } from '@angular/common';
     }
   `]
 })
-export class App {}
+export class App {
+clickAudio = new Audio('assets/click.mp3');
+  playClickSound() {
+   this.clickAudio.currentTime = 0;
+  this.clickAudio.play().catch(err => console.error('Audio error:', err));
+  }
+}

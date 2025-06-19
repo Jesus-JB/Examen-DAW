@@ -11,7 +11,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     <div class="container mt-5">
       <ngb-carousel class="mb-5">
         <ng-template ngbSlide>
-          <div class="carousel-image" style="background-image: url('assets/weather1.jpg')">
+          <div class="carousel-image" style="background-image: url('assets/weather1.svg')">
             <div class="carousel-caption">
               <h3>Accurate Weather Forecasts</h3>
               <p>Get detailed weather information for any city worldwide</p>
@@ -19,7 +19,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
           </div>
         </ng-template>
         <ng-template ngbSlide>
-          <div class="carousel-image" style="background-image: url('assets/weather2.jpg')">
+          <div class="carousel-image" style="background-image: url('assets/weather2.svg')">
             <div class="carousel-caption">
               <h3>Air Quality Index</h3>
               <p>Monitor air pollution levels in your area</p>
@@ -27,7 +27,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
           </div>
         </ng-template>
         <ng-template ngbSlide>
-          <div class="carousel-image" style="background-image: url('assets/weather3.jpg')">
+          <div class="carousel-image" style="background-image: url('assets/weather3.svg')">
             <div class="carousel-caption">
               <h3>Weather Alerts</h3>
               <p>Stay informed about severe weather conditions</p>

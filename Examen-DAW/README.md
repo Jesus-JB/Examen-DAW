@@ -1,59 +1,95 @@
-# ExamenDAW
+# Weather Dashboard - Proyecto DAW
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+## Descripción
 
-## Development server
+Este proyecto es una aplicación web moderna desarrollada como parte del primer parcial de la materia Desarrollo de Aplicaciones Web (DAW) en la Universidad de Especialidades Espíritu Santo (UEES). La aplicación proporciona una interfaz intuitiva para consultar información meteorológica en tiempo real.
 
-To start a local development server, run:
+## Equipo de Desarrollo
 
+- **Jesus Jimenez**
+- **Nicolas Lopez**
+- **Kevin Roman**
+
+## Características Principales
+
+- Interfaz de usuario moderna y responsive
+- Consulta de datos meteorológicos en tiempo real
+- Visualización de pronósticos detallados
+- Soporte para múltiples ubicaciones
+- Carrusel de imágenes informativas
+- Diseño adaptable para dispositivos móviles y escritorio
+
+## Tecnologías Utilizadas
+
+- **Frontend Framework:** Angular 20.0.3
+- **UI Components:** ng-bootstrap
+- **Estilos:** CSS personalizado y Bootstrap
+- **Captura de Pantalla:** html2canvas
+- **APIs:** Servicios de datos meteorológicos
+
+## Requisitos Previos
+
+- Node.js (versión 18 o superior)
+- Angular CLI (versión 20.0.3)
+- Navegador web moderno
+
+## Instalación
+
+1. Clonar el repositorio:
+```bash
+git clone [URL del repositorio]
+```
+
+2. Instalar dependencias:
+```bash
+cd Examen-DAW
+npm install
+```
+
+3. Iniciar servidor de desarrollo:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Abrir el navegador en `http://localhost:4200`
 
-## Code scaffolding
+## Scripts Disponibles
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- `ng serve`: Inicia el servidor de desarrollo
+- `ng build`: Compila el proyecto para producción
+- `ng test`: Ejecuta pruebas unitarias
+- `ng e2e`: Ejecuta pruebas end-to-end
 
-```bash
-ng generate component component-name
+## Estructura del Proyecto
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── home/
+│   │   └── weather/
+│   ├── services/
+│   └── shared/
+├── assets/
+└── environments/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Contribución
 
-```bash
-ng generate --help
-```
+Para contribuir al proyecto:
 
-## Building
+1. Crear un fork del repositorio
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit de los cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
 
-To build the project run:
+## Licencia
 
-```bash
-ng build
-```
+Este proyecto es parte de un trabajo académico para la UEES y está protegido por derechos de autor.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Agradecimientos
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Universidad de Especialidades Espíritu Santo (UEES)
+- Profesores y mentores del curso de Desarrollo de Aplicaciones Web
+- Equipo de desarrollo por su dedicación y esfuerzo

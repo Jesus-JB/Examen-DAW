@@ -79,4 +79,5 @@ export class WeatherService {
     `${this.baseUrl}/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric&lang=es`
   );
 }
+  
 }

@@ -76,7 +76,7 @@ import { Social } from '../social/social';
 
             <div class="text-center">
               <p class="mb-0">Versión 1.0.0</p>
-              <p class="text-muted">Creado por Jesus</p>
+              <p class="text-muted">Creado por Jesus Jimenez, Kevin Roman, Nicolas Lopez</p>
             </div>
           </div>
         </div>
